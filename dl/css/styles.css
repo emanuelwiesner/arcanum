@@ -1,0 +1,173 @@
+body, table, tr, td, p, div, h1, h2, h3, h4, h5, h6, ul, ol, li, fieldset, form, dl, dt, dd, address, blockquote, table, tr, td, img{margin:0; padding:0;}
+
+body {
+    font: 14px arial, sans-serif;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+    background: rgb(102,102,102);
+}
+
+tr, td {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+#shadower {
+	-moz-box-shadow: 0 0 30px 10px rgb(66,66,66);
+    -webkit-box-shadow: 0 0 30px 10px rgb(66,66,66);
+    box-shadow: 0 0 30px 10px rgb(66,66,66);
+	width:959px;
+	margin:30px auto;
+}
+
+#homepage #content {
+	 padding:30px 35px 0 35px;
+}
+
+#content {
+	background: url(../img/content_top.png) no-repeat 0 0;
+    padding: 75px 35px 130px 35px;
+    overflow:hidden;
+}
+
+#footer {
+    background: url(../img/header_down.png) no-repeat 0 0;
+    height: 120px;
+    margin: -77px 0 0 0;
+	
+    position: absolute;
+    width: 959px;
+}
+
+#footer a {
+    color: rgb(170,170,170);
+}
+#header {
+    position: relative;
+    /* height: 175px; */
+    height: 174px;
+    background: url(../img/header_cropped.jpg) no-repeat 0 -95px;
+    -moz-box-shadow: inset 0 10px 10px -10px rgb(0,0,0);
+    -webkit-box-shadow: inset 0 10px 10px -10px rgb(0,0,0);
+    box-shadow: inset 0 10px 10px -10px rgb(0,0,0);
+}
+
+#loginform {
+    position: absolute;
+    right: -15px;
+    bottom: -1px;
+    margin: 0;
+    padding: 0;
+}
+/*
+#login {
+    position: absolute;
+    right: -15px;
+    bottom: -1px;
+    margin: 0;
+    padding: 0;
+}
+ */
+
+input[type=text] {color: black;}
+
+input {
+    height: 28px;
+    width: 210px;
+    padding: 0 4px;
+    font-size: 15px;
+    background-color: rgba(255,255,255,0.4);
+    color: rgb(255,255,255);
+    border: 1px solid rgb(189,189,189);
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -moz-border-radius: 5px;
+    /* border-radius: 5px; */
+    border-radius: 1px; 
+}
+
+textarea {
+    height: 28px;
+    width: 210px;
+    padding: 0 4px;
+    font-size: 15px;
+    background-color: rgba(255,255,255,0.4);
+    color: black;
+    border: 1px solid rgb(189,189,189);
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 1px;
+}
+
+.button {
+    height: 30px;
+    border: none;
+    font-size: 15px;
+    color: rgb(72,65,60);
+    background: url(../img/button.png) repeat-x;
+    border: 1px solid rgb(189,189,189);
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 1px;
+}
+#header .button {
+	width: 150px;
+}
+#content .button { 
+	min-width: 150px;
+}
+
+#modulename {
+    color: rgb(70,70,70);
+    font: 30px 'Ubuntu', arial, sans-Serif;
+    position: absolute;
+    left: 20px;
+    top: 55px;
+}
+
+#main {
+    width: 959px;
+    min-height: 240px;
+    padding-top: 10px;
+}
+
+#content .black {
+    padding: 17px;
+    margin: 30px 30px 0px 10px;
+
+    
+    background: rgb(54,54,54);
+    color: #FFF;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    /* border-radius: 1px; */
+     border-radius: 1px;
+    -moz-box-shadow: 0 0 5px 5px rgb(66,66,66);
+    -webkit-box-shadow: 0 0 5px 5px rgb(66,66,66);
+    box-shadow: 0 0 5px 5px rgb(66,66,66);
+}
+
+#content .checkbox {
+	appearance: none;
+	-webkit-appearance: none;
+	background-color: #FFF;
+    border: 1px solid #BDBDBD;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    height: 15px;
+    width: 15px;
+    padding-top:4px;
+}
+
+#content .checkbox:checked {
+	background-color: #CF6D1E;
+}
+
+.clear, .clearer {
+	clear:both;
+}

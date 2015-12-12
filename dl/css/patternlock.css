@@ -1,0 +1,130 @@
+
+
+.patternlockcontainer{
+	display:block;
+
+    position:absolute;
+
+    width: 380px;
+     height: 300px;
+    margin: 0px 0px 0px 0px;
+
+	padding-top: 30px;
+	padding-left: 40px;
+
+    /*background:#000;*/
+    background: url('../img/patternlock_bg.png') repeat 0 0;
+    z-index: 200;
+
+   /* opacity:.95;*/
+
+
+       /* border: 1px solid rgb(82,82,82);*/
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    -moz-box-shadow: 0 0 15px 5px #666666;
+    -webkit-box-shadow: 0 0 15px 5px #666666;
+    box-shadow: 0 0 15px 5px #666666;
+	
+	
+	
+	display: none;
+}
+.patternlockcontainer{margin-top:10px;}
+
+#homepage #content .patternlockcontainer{	margin-left: 490px;
+	margin-top: -250px;
+}
+
+
+
+.patternlockbuttoncontainer{
+	margin-left: 50px;
+	position:absolute;
+	width:300px;
+}
+
+.patternlocklineshorizontalcontainer{
+	position:absolute;
+	width:250px;
+	padding:22px;
+	margin-left: 50px;
+}
+
+.patternlocklinesverticalcontainer{
+	position:absolute;
+	width:260px;
+	padding:22px;
+	margin-left: 50px;
+}
+
+.patternlocklinesdiagonalcontainer{
+	position:absolute;
+	width:240px;
+	padding:22px;
+	margin-left: 50px;
+}
+
+
+.patternlockbutton{
+	background-image:url('../img/patternlock/button.png');
+	background-repeat:no-repeat;
+	display:block;
+	width:53px;
+	height:53px;
+	float:left;
+	margin:16px;
+}
+
+.touched{
+	background-image:url('../img/patternlock/button_active.png');
+}
+
+.multiple{
+	background-image:url('../img/patternlock/button_active2.png');
+}
+
+.patternlocklinehorizontal{
+	background-image:url('../img/patternlock/line_hor.png');
+	background-repeat:no-repeat;
+	height:83px;
+	width:53px;
+	display:block;
+	float:left;
+	margin:2px -7px 0px 38px;
+	visibility:hidden;
+}
+
+.patternlocklinevertical{
+	background-image:url('../img/patternlock/line_ver.png');
+	background-repeat:no-repeat;
+	height:53px;
+	width:83px;
+	display:block;
+	float:left;
+	margin:38px 0px -7px 3px;
+	visibility:hidden;
+}
+
+.patternlocklinediagonalforward{
+	background-image:url('../img/patternlock/line_diagonal1.png');
+	background-repeat:no-repeat;
+	height:83px;
+	width:83px;
+	display:block;
+	float:left;
+	margin:26px -22px -24px 26px;
+	visibility:hidden;
+}
+
+.patternlocklinediagonalbackwards{
+	background-image:url('../img/patternlock/line_diagonal2.png');
+	background-repeat:no-repeat;
+	height:83px;
+	width:83px;
+	display:block;
+	float:left;
+	margin:26px -26px -24px 26px;
+	visibility:hidden;
+}

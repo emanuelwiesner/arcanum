@@ -32,12 +32,12 @@ $config = array(
 		'database_ssl_enable' => FALSE, //could be safely disabled for local and/or socket connections
 		'database_dsn' => array( //mysqli
                         'phptype' => 'mysqli',
-                        'database' => 'arcanumsql1',
-                        'username' => 'arcanumsql1',
-                        'password' => 'xfroUwWsup',
+                        'database' => 'enter_your_database_name_here',
+                        'username' => 'enter_your_database_username_here',
+                        'password' => 'enter_your_database_password_here',
                         'charset'  => 'utf8', //do not change!
-			//'hostspec' => 'localhost',
-                        'socket'   => '/var/run/mysqld/mysqld.sock', //I prefer sockets, you can commet this and use the following 'hostpec'
+			'hostspec' => 'localhost',
+                        //'socket'   => '/var/run/mysqld/mysqld.sock', //I prefer sockets, you can commet this and use the following 'hostpec'
 			//'ca' => $this_dir.DS.'sqlca.pem',
                 ),
 

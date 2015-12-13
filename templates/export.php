@@ -1,9 +1,16 @@
 <?php unset($content['timer_display_content']); if (!(count($content) > 0)): ?>
 <?php
+$statuslink = $this->statuslink .'&sem='. $content['hashid'].'&upload=1';
 $java_script = "
         $(document).ready(function() {
                 change_options('#exportall');
 	});
+                function loadingbar () {
+                        $('#subnav').hide();
+                        change_options('#loadingbar');
+                        return true;
+                }
+
 ";
 ?>
 
@@ -21,8 +28,8 @@ $java_script = "
 	<br /><br />
 	<form id="exportall_now" action="<?=link_for('export', 'exportall')?>" method="post">
 		<table>		
-				<tr><td class="first"><?=e('password')?></td> <td><input type="text" tabindex = "1" id="password" name="export_password1" autocomplete="off" value=""/></td></tr>
-				<tr><td class="first"><?=e('password_repeat')?></td> <td><input type="text" tabindex = "1" id="password" name="export_password2" autocomplete="off" value=""/></td></tr>
+				<tr><td class="first"><?=e('password')?></td> <td><input type="password" tabindex = "1" id="password" name="export_password1" autocomplete="off" value=""/></td></tr>
+				<tr><td class="first"><?=e('password_repeat')?></td> <td><input type="password" tabindex = "1" id="password" name="export_password2" autocomplete="off" value=""/></td></tr>
 				<tr><td></td><td><input onclick="loadingbar();" name="change_forgot" class="button submit-button" value="<?=e('download')?>" type="submit" /></td></tr>		
 		</table>
 	</form>
@@ -35,11 +42,18 @@ $java_script = "
 	<br /><br />
 	<form id="importall_file" enctype="multipart/form-data" action="<?=link_for('export', 'importall')?>" method="post">	
 		<table>	
-				<tr><td class="first"><?=e('password')?></td> <td><input type="text" tabindex = "1" id="password" name="import_password" autocomplete="off" value=""/></td></tr>
+				<tr><td class="first"><?=e('password')?></td> <td><input type="password" tabindex = "1" id="password" name="import_password" autocomplete="off" value=""/></td></tr>
 				<tr><td class="first"><?=e('file')?></td><td><input name="thefile" type="file"></td></tr>
-				<tr><td></td><td><input onclick="loadingbar();" class="button" type="submit" onclick="loadingbar();" value="<?=e('upload')?>"></td></tr>		
+				<tr><td></td><td><input onclick="loadingbar();" class="button" type="submit" value="<?=e('upload')?>"></td></tr>		
 		</table>
 	</form>
+</div>
+<div id="loadingbar_change" class="options_change">
+        <div id="login_stat">
+                <div id="login_img" style="float: left;"><?=img($this->loading)?></div>
+                <div id="login_text" style="float: left; margin: 8px 10px; color:white;"></div>
+                <div class="clearer"></div>
+        </div>
 </div>
 <?php endif; ?>
 <?php

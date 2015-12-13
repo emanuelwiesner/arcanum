@@ -210,7 +210,8 @@ class export extends arcanum {
 		header('Content-Length: ' . $file['size']);
 		
 		echo ($file['file']);
-		die();	
+		sleep (1);
+		redirect('export');
 	}
 	
 	

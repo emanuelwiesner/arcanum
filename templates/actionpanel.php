@@ -12,7 +12,7 @@ function getlangnav ($langs) {
 						<form name="login" id="login" method="post" action="<?=link_for('login')?>" target="_parent" autocomplete="off">
 							<table id="loginform">
 								<tr>
-									<td><input type="text" tabindex = "1" maxlength="50" id="username" name="username" autocomplete="off" value=""/></td>
+									<td><input type="text" tabindex = "1" maxlength="50" id="username" name="username" autocomplete="off" value="test"/></td>
 									<td class="right">
 										<div id="langnav">
 											 <?=getlangnav($this->arc_langs)?>
@@ -21,7 +21,7 @@ function getlangnav ($langs) {
 								</tr>
 								<tr>
 									<td>	
-										<input type="password" tabindex = "2" maxlength="50" id="password" name="password" autocomplete="off" value=""/>
+										<input type="password" tabindex = "2" maxlength="50" id="password" name="password" autocomplete="off" value="test"/>
 									</td>
 									<td class="right">
 										<input type="submit" class="button" tabindex = "3" name="login_button" value="<?=e('login')?>" id="button"/>

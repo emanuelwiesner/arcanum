@@ -75,7 +75,7 @@ $java_script .= '
 	 	<ul>
 			<li><a class="choose" href="#" onclick="$('#add_category').toggle();$('#categories').toggle();$('#search').toggle();"><?=e('new_category')?></a></li>
 			<?php if (is_array($data)) : ?>
-				<li><a class="choose" href="<?=link_for('export')?>"><?=e('print_view')?></a></li>
+				<li><a class="choose" href="<?=link_for('export','printview')?>"><?=e('print_view')?></a></li>
 			<?php endif; ?>
 		</ul>
 	 </div>

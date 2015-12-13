@@ -12,6 +12,7 @@ if (($auth  == TRUE) || defined('MENUAUTH')) {
 			50 => "memo",
 			60 => "invitation",
 			70 => "log",
+			75 => "export",
 			80 => "settings"
 	);
 	

@@ -1618,7 +1618,7 @@ class arcanum {
 
 		        $arcanum_ret = gzinflate($arcanum);
 	        	
-			if ($arcanum == FALSE) {
+			if (($arcanum == FALSE) && (!(($this->module == 'export') && ($this->action == 'importall'))) ) {
                                 throw new arcException(' User['.$this->id.']@['.$this->modulename.']' ."\n". 'USER ('.$this->id.') - mcrypt returned FALSE while decrypting', 408);
 			} elseif ($arcanum_ret == FALSE){
 	  			throw new arcException(' User['.$this->id.']@['.$this->modulename.']' ."\n". 'USER ('.$this->id.') - gzinflate returned FALSE for val ['.trim(utf8_encode($we_want_decrypt)).']', 408);

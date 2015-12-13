@@ -41,6 +41,7 @@ $config = array(
 			//'ca' => $this_dir.DS.'sqlca.pem',
                 ),
 
+		'imports_only_on_empty_db' => TRUE,
 /*
  => The following settings could be changed, but there is no need to do that
 */

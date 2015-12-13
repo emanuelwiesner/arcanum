@@ -40,19 +40,17 @@ class export extends arcanum {
 		} else { 
 			try {
 				$all = unserialize($this->arc_decrypt($b64dec, $password));
-				$this->session_msg(e('problem_with_import_dec'));
-			} catch (arcException $e) {			
+			} catch (arcException $e) {
+				$this->session_msg(e('problem_with_import_dec'));			
 				redirect('dashboard');
 			}
 		}	
-		
+		unset($b64dec);
 
 			foreach ($all['data'] as $cats) {		
 				
 				$categories = DB_DataObject::factory('categories');
 				$categories->id_users = $this->id;
-				
-				debug($cats['category'][0], $cats['category'][0]);
 				
 				$save_category = $this->arc_encrypt_input($categories, $cats['category'][0]);
 				$new_cat_id = $save_category->insert();
@@ -63,8 +61,6 @@ class export extends arcanum {
 						$portals = DB_DataObject::factory('portals');
 						$portals->id_categories = $new_cat_id;
 						
-						debug($portal['portal'][0],$portal['portal'][0]);
-						
 						$save_portals = $this->arc_encrypt_input($portals, $portal['portal'][0]);
 						$new_portal_id = $save_portals->insert();
 						
@@ -72,11 +68,8 @@ class export extends arcanum {
 							$arcanums = DB_DataObject::factory('arcanums');
 							$arcanums->id_categories = $new_portal_id;
 						
-							debug($arcanum[0],$arcanum[0]);
-						
 							$save_arcanums = $this->arc_encrypt_input($arcanums, $arcanum[0]);
 							$save_arcanums->insert();
-							
 						}
 				
 				
@@ -86,10 +79,8 @@ class export extends arcanum {
 					$files = DB_DataObject::factory('files');
 					$files->id_categories = $new_cat_id;
 				
-					debug($fils[0], $fils[0]);
 					$save_files = $this->arc_encrypt_input($files, $fils[0]);
 					$save_files->insert();				
-
 				}
 			}
 			
@@ -98,16 +89,15 @@ class export extends arcanum {
 				$memos = DB_DataObject::factory('memos');
 				$memos->id_users = $this->id;
 				
-				debug( $memo[0], $memo[0]);
 				$save_memos = $this->arc_encrypt_input($memos, $memo[0]);
 				$save_memos->insert();				
-
 			}
-			
 			
 			unlink($_FILES['thefile']['tmp_name']);
 			$this->session_msg(e('import_success'));
-		
+
+		$this->user_log(e('import_success'));
+		logit("User ".$this->id." imported data.");	
 		redirect('dashboard');		
 	}	
 	
@@ -208,10 +198,12 @@ class export extends arcanum {
 		header('Cache-Control: must-revalidate');
 		header('Pragma: private');
 		header('Content-Length: ' . $file['size']);
-		
+	
+		$this->user_log(e("exportall"));
+	
 		echo ($file['file']);
-		sleep (1);
-		redirect('export');
+                sleep (1);
+                redirect('export');
 	}
 	
 	

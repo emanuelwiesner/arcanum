@@ -1,4 +1,4 @@
-<?php unset($content['timer_display_content']); if (!(count($content) > 0)): ?>
+<?php if (!(count($content) > 1)): ?>
 <?php
 $statuslink = $this->statuslink .'&sem='. $content['hashid'].'&upload=1';
 $java_script = "
@@ -30,7 +30,7 @@ $java_script = "
 		<table>		
 				<tr><td class="first"><?=e('password')?></td> <td><input type="password" tabindex = "1" id="password" name="export_password1" autocomplete="off" value=""/></td></tr>
 				<tr><td class="first"><?=e('password_repeat')?></td> <td><input type="password" tabindex = "1" id="password" name="export_password2" autocomplete="off" value=""/></td></tr>
-				<tr><td></td><td><input onclick="loadingbar();" name="change_forgot" class="button submit-button" value="<?=e('download')?>" type="submit" /></td></tr>		
+				<tr><td></td><td><input onclick="loadingbar();$('#login_text').html(<?=e('working')?>);" name="change_forgot" class="button submit-button" value="<?=e('download')?>" type="submit" /></td></tr>		
 		</table>
 	</form>
 </div>
@@ -44,7 +44,7 @@ $java_script = "
 		<table>	
 				<tr><td class="first"><?=e('password')?></td> <td><input type="password" tabindex = "1" id="password" name="import_password" autocomplete="off" value=""/></td></tr>
 				<tr><td class="first"><?=e('file')?></td><td><input name="thefile" type="file"></td></tr>
-				<tr><td></td><td><input onclick="loadingbar();" class="button" type="submit" value="<?=e('upload')?>"></td></tr>		
+				<tr><td></td><td><input onclick="loadingbar();$('#login_text').html(<?=e('uploading')?>);" class="button" type="submit" value="<?=e('upload')?>"></td></tr>		
 		</table>
 	</form>
 </div>
@@ -55,7 +55,7 @@ $java_script = "
                 <div class="clearer"></div>
         </div>
 </div>
-<?php endif; ?>
+<?php else: ?>
 <?php
 if (is_array($content) && (count($content) > 0)){
 	
@@ -122,3 +122,4 @@ if (is_array($content) && (count($content) > 0)){
 	echo '</div>';
 }
 ?>
+<?php endif; ?>

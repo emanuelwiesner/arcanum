@@ -166,7 +166,7 @@ if (is_array($data)){
 			';
 		
 		
-		$desc = (defined('HIDE_DESC')) ? '<td></td><td></td>' : '<td class="first">Beschreibung</td><td><input id="input_portaldesc_'.$id.'" class="in" type="text" name="desc" value="" /></td>';
+		$desc = (defined('HIDE_DESC')) ? '<td></td><td></td>' : '<td class="first">'.e('desc').'</td><td><input id="input_portaldesc_'.$id.'" class="in" type="text" name="desc" value="" /></td>';
 			
 		$input_type_link = ($content['use_autolinkgen']) ? '<textarea rows="5" cols="5" class="in linkinput arc_textarea"' : '<input type="text" value="" class="in linkinput"';
 		$input_type_link_post = ($content['use_autolinkgen']) ? '></textarea>' : '/>';

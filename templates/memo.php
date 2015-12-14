@@ -79,9 +79,9 @@ if (!(is_array($data)))
                 </div>
         </div>
         <?php endif; ?>
-	<div id="memoalphabet">
 		<?php
 			if (is_array($data)) {
+				echo '<div id="memoalphabet">';
 				$availl = array();
 				foreach ($data as $id => $row){
 					$title = strtolower(trim($row['title']));
@@ -104,9 +104,9 @@ if (!(is_array($data)))
 					}
 					echo '<div class="letter'.$class.'"'.$onclick.'>'.$l.'</div>';
 				}
+			echo '</div>';
 			}
 		?>
-	</div>	
 	<div class="clearer"></div>	
 </div>
 

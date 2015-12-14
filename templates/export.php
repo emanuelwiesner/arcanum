@@ -30,7 +30,7 @@ $java_script = "
 		<table>		
 				<tr><td class="first"><?=e('password')?></td> <td><input type="password" tabindex = "1" id="password" name="export_password1" autocomplete="off" value=""/></td></tr>
 				<tr><td class="first"><?=e('password_repeat')?></td> <td><input type="password" tabindex = "1" id="password" name="export_password2" autocomplete="off" value=""/></td></tr>
-				<tr><td></td><td><input onclick="loadingbar();$('#login_text').html('<?=e('working')?>');" name="change_forgot" class="button submit-button" value="<?=e('download')?>" type="submit" /></td></tr>		
+				<tr><td></td><td><input onclick="loadingbar();$('#login_text').html('<?=e('working').br().e('processing_download')?>');" name="change_forgot" class="button submit-button" value="<?=e('download')?>" type="submit" /></td></tr>		
 		</table>
 	</form>
 </div>

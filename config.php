@@ -41,7 +41,7 @@ $config = array(
 			//'ca' => $this_dir.DS.'sqlca.pem',
                 ),
 
-		'imports_only_on_empty_db' => TRUE,
+		'imports_only_on_empty_db' => FALSE,
 /*
  => The following settings could be changed, but there is no need to do that
 */
@@ -156,7 +156,7 @@ $config = array(
 		//holy shit, do not change in production !!!!!!!!!!
 		
 		// misc	
-		'max_data_storage' => 23*1024*1024,
+		'max_data_storage' => 15*1024*1024,
 		'storage_upper_limit' => 50*1024*1024,
 		'max_file_size' => 10*1024*1024,
 		'default_colour' => '#C0FFEE',

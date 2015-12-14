@@ -539,9 +539,12 @@ function change_arc_form (id){
 				var common_used = 'on'; 
 		    }
 	        
+		if (desc == undefined){
+			desc = '';
+		}
+
 	        var action = 'add';
 	        dataString = 'id_categories='+ id + '&name='+ encodeURIComponent(name) + '&desc=' + encodeURIComponent(desc) + '&link=' + encodeURIComponent(link) + '&portal_login=' + encodeURIComponent(portal_login) + '&portal_pass=' + encodeURIComponent(portal_pass) + '&common_used=' + common_used + '&action=' + action + '&autolink=' + autolink; 
-	        
 	        $.ajax({  
 	    		  type: "POST",  
 	    		  url: "<?=link_for('portals')?>",  
@@ -577,7 +580,11 @@ function change_arc_form (id){
 	        var link = $(portal_form + ' #input_link_' + id).val();
 	        var autolink = $(portal_form + ' #portal_autologin_' + id).val();
 	        var action = 'update';
-	        	        
+	
+		if (desc == undefined){
+                        desc = '';
+                }
+	 
 	        var dataString = 'id_port='+ id + '&name='+ encodeURIComponent(name) + '&desc=' + encodeURIComponent(desc) + '&action=' + action + '&link=' + encodeURIComponent(link) + '&autolink=' + autolink; 
 	        $.ajax({  
 	    		  type: "POST",  

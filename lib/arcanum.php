@@ -1111,8 +1111,6 @@ class arcanum {
 						if (!$check) $connect_erros++;						
 					}
 				
-		
-	
 					//2///// --->  STEP: count for files
 					$filescount = 0;
 					foreach ($cats as $cat){
@@ -1163,7 +1161,7 @@ class arcanum {
 					
 						
 				}
-				
+			
 				if (isset($ports)){
 					$this->put_arc_lock(e('reencrypt_arcanums'));
 					foreach ($ports as $port){
@@ -1185,12 +1183,14 @@ class arcanum {
 				$this->put_arc_lock(e('reencrypt_settings'));
 				$settings = DB_DataObject::factory('settings');
 				$settings->id_users = $this->id;
-				$settings->find(TRUE);
 				
-				$new_settings = $this->arc_encrypt_input(   $this->arc_decrypt_output(array(clone($settings)), TRUE)   , FALSE, $new_holy);
-				$check = $new_settings->update();
-				if (!$check) $connect_erros++;
-				
+				if ($settings->find()) {
+					$settings->fetch();	
+					$new_settings = $this->arc_encrypt_input(   $this->arc_decrypt_output(array(clone($settings)), TRUE)   , FALSE, $new_holy);
+					$check = $new_settings->update();
+					if (!$check) $connect_erros++;
+				}
+	
 				//5.5 ---> STEP: LOG
 				$this->put_arc_lock(e('reencrypt_logs'));
 				$log = DB_DataObject::factory('log');
@@ -1217,7 +1217,6 @@ class arcanum {
 				
 				}
 
-
                                 //5.8 ---> STEP: MEMO
                                 $this->put_arc_lock(e('reencrypt_memos'));
                                 $memos = DB_DataObject::factory('memos');
@@ -1233,7 +1232,6 @@ class arcanum {
 
 			
 				if ($connect_erros == 0){
-	
 					//6///// ---> LAST STEP: users
 					$this->put_arc_lock(e('reencrypt_you'));
 					$users = DB_DataObject::factory('users');

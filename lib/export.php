@@ -54,10 +54,9 @@ class export extends arcanum {
 				
 				$save_category = $this->arc_encrypt_input($categories, $cats['category'][0]);
 				$new_cat_id = $save_category->insert();
-		
 				
 				foreach ($cats['portals'] as $portal) {
-				
+					
 						$portals = DB_DataObject::factory('portals');
 						$portals->id_categories = $new_cat_id;
 						
@@ -65,8 +64,9 @@ class export extends arcanum {
 						$new_portal_id = $save_portals->insert();
 						
 						foreach ($portal['portal']['arcanums'] as $arcanum) {
+							
 							$arcanums = DB_DataObject::factory('arcanums');
-							$arcanums->id_categories = $new_portal_id;
+							$arcanums->id_portals = $new_portal_id;
 						
 							$save_arcanums = $this->arc_encrypt_input($arcanums, $arcanum[0]);
 							$save_arcanums->insert();
@@ -202,8 +202,7 @@ class export extends arcanum {
 		$this->user_log(e("exportall"));
 	
 		echo ($file['file']);
-                sleep (1);
-                redirect('export');
+		die();
 	}
 	
 	

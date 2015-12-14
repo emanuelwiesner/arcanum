@@ -27,7 +27,7 @@ $config = array(
                 'geoiptool_api' => 'https://geoiptool.com/en/?ip=', //use what you want
 		'virusscanner' => '/usr/bin/clamdscan --infected --stream --no-summary', //put in viruscanner with xargs, filename will be appendes
 
-		'inv_mode' => TRUE, //by default, arcanum works with invitations - only registered users can invite others. Disable for first use.
+		'inv_mode' => FALSE, //by default, arcanum works with invitations - only registered users can invite others. Disable for first use.
 
 		'database_ssl_enable' => FALSE, //could be safely disabled for local and/or socket connections
 		'database_dsn' => array( //mysqli
@@ -41,7 +41,7 @@ $config = array(
 			//'ca' => $this_dir.DS.'sqlca.pem',
                 ),
 
-		'imports_only_on_empty_db' => FALSE,
+		'imports_only_on_empty_db' => TRUE, //maybe buggy?
 /*
  => The following settings could be changed, but there is no need to do that
 */
@@ -76,7 +76,7 @@ $config = array(
                 'ip_sec_check' => TRUE, //rely on IP in sec check
                 'ipv6switchgraceactive' => TRUE, //allow switch to an other IP protocol - experimental.
                 'enablevirusscan' => TRUE, //check uploaded files for viruses before store in DB
-                'file_integrity_check' => FALSE, //check main file (lib/arcanum.php) for changes - for logged in people.
+                'file_integrity_check' => TRUE, //check main file (lib/arcanum.php) for changes - for logged in people.
 		'https' => (@$_SERVER['HTTPS'] == "on") ? TRUE : FALSE,
 
 		//could be changed

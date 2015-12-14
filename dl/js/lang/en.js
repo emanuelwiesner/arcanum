@@ -173,11 +173,8 @@ function do_register (){
     var dataString = '&username='+ encodeURIComponent(username) + '&password_1='+ encodeURIComponent(password1) + '&password_2='+ encodeURIComponent(password2) + '&colour=' + colour + '&action=doit'; 
    
     //CHECK INV MODE
-        	var dataString = dataString + '&captcha=' + $(reg_form + ' #captchatext').val() + '&captchacount=' + $(reg_form + ' #captcha_count').val();
-	if ($(reg_form + ' #captchatext').val() == '') {
-                set_message('Enter captcha text');
-                error = true;
-	}
+        	var inv_id = $('#inv_id').val();
+		var dataString = dataString + '&inv_hash=' + encodeURIComponent(inv_id) + '&captcha=""&captchatext=""&captchacount=""';
     
 	if (username == '') {
 		set_message('Missing field: Username');

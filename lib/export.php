@@ -92,6 +92,15 @@ class export extends arcanum {
 				$save_memos = $this->arc_encrypt_input($memos, $memo[0]);
 				$save_memos->insert();				
 			}
+			/*
+                        foreach ($all['invitations'] as $oldid => $invitation) {
+                                $invitations = DB_DataObject::factory('invitations');
+                                $invitations->id_users = $this->id;
+
+                                $save_invitations = $this->arc_encrypt_input($invitations, $invitation[0]);
+                                $save_invitations->insert();
+                        }
+			*/
 			
 			unlink($_FILES['thefile']['tmp_name']);
 			$this->session_msg(e('import_success'));
@@ -155,7 +164,7 @@ class export extends arcanum {
 				
 				
 			
-				
+			/*	
 				//5.75 ---> STEP: INVITATIONS
 				$invs = DB_DataObject::factory('invitations');
 				$invs->id_users = $this->id;
@@ -165,7 +174,7 @@ class export extends arcanum {
 					}
 				
 				}
-
+			*/
                 
 				//5.8 ---> STEP: MEMO
                 $memos = DB_DataObject::factory('memos');
@@ -176,7 +185,9 @@ class export extends arcanum {
                     }
 
                 }	
-				
+	
+		debug($all, $all);
+		die();			
 		
 				
 		$serialized = serialize($all);

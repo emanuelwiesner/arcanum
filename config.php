@@ -27,7 +27,7 @@ $config = array(
                 'geoiptool_api' => 'https://geoiptool.com/en/?ip=', //use what you want
 		'virusscanner' => '/usr/bin/clamdscan --infected --stream --no-summary', //put in viruscanner with xargs, filename will be appendes
 
-		'inv_mode' => FALSE, //by default, arcanum works with invitations - only registered users can invite others. Disable for first use.
+		'inv_mode' => TRUE, //by default, arcanum works with invitations - only registered users can invite others. Disable for first use.
 
 		'database_ssl_enable' => FALSE, //could be safely disabled for local and/or socket connections
 		'database_dsn' => array( //mysqli

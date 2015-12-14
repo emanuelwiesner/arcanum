@@ -173,11 +173,8 @@ function do_register (){
     var dataString = '&username='+ encodeURIComponent(username) + '&password_1='+ encodeURIComponent(password1) + '&password_2='+ encodeURIComponent(password2) + '&colour=' + colour + '&action=doit'; 
    
     //CHECK INV MODE
-        	var dataString = dataString + '&captcha=' + $(reg_form + ' #captchatext').val() + '&captchacount=' + $(reg_form + ' #captcha_count').val();
-	if ($(reg_form + ' #captchatext').val() == '') {
-                set_message('Bitte den angezeigten Text eintippen!');
-                error = true;
-	}
+        	var inv_id = $('#inv_id').val();
+		var dataString = dataString + '&inv_hash=' + encodeURIComponent(inv_id) + '&captcha=""&captchatext=""&captchacount=""';
     
 	if (username == '') {
 		set_message('Fehlende Angabe: Benutzername');
@@ -528,9 +525,12 @@ function change_arc_form (id){
 				var common_used = 'on'; 
 		    }
 	        
+		if (desc == undefined){
+			desc = '';
+		}
+
 	        var action = 'add';
 	        dataString = 'id_categories='+ id + '&name='+ encodeURIComponent(name) + '&desc=' + encodeURIComponent(desc) + '&link=' + encodeURIComponent(link) + '&portal_login=' + encodeURIComponent(portal_login) + '&portal_pass=' + encodeURIComponent(portal_pass) + '&common_used=' + common_used + '&action=' + action + '&autolink=' + autolink; 
-	        
 	        $.ajax({  
 	    		  type: "POST",  
 	    		  url: "http://arcanum.dreamwriter.org/portals",  
@@ -566,7 +566,11 @@ function change_arc_form (id){
 	        var link = $(portal_form + ' #input_link_' + id).val();
 	        var autolink = $(portal_form + ' #portal_autologin_' + id).val();
 	        var action = 'update';
-	        	        
+	
+		if (desc == undefined){
+                        desc = '';
+                }
+	 
 	        var dataString = 'id_port='+ id + '&name='+ encodeURIComponent(name) + '&desc=' + encodeURIComponent(desc) + '&action=' + action + '&link=' + encodeURIComponent(link) + '&autolink=' + autolink; 
 	        $.ajax({  
 	    		  type: "POST",  

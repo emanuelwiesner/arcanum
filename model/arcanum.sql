@@ -230,7 +230,7 @@ CREATE TABLE `users` (
   `lastip` text,
   `lastbrowser` text,
   `lastupdated` text,
-  `ciph_v` text,
+  `cryptv` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

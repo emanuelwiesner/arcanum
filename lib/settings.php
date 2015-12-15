@@ -6,7 +6,6 @@ class settings extends arcanum {
 	}
 	
 	public function show () {
-
 		$settings = DB_DataObject::factory('settings');
 		$settings->id_users = $this->id;
 		$settings->find(TRUE);
@@ -87,7 +86,6 @@ class settings extends arcanum {
 			}	
 					
 		} else {
-	
 			if (!($this->crc == $this->request['crc_options_change']))
 				redirect('settings');
 				

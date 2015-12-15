@@ -504,6 +504,7 @@ class arcanum {
 
 				$arc_key = $this->session_masterkey_get();
 
+				logit(pack('H*', $arc_key´));
 				$arc_id = $this->session_get('arc_id');
 				
 				$login_check = DB_DataObject::factory('users');
@@ -511,7 +512,9 @@ class arcanum {
 				while($login_check->fetch()){
 						
 					if ($this->arc_hash($login_check->id) == $arc_id) {
-						
+						//SET CRYPTV
+						$this->cryptv = $login_check->cryptv;					
+	
 						//SET COLOUR
 						$this->colour = $this->arc_decrypt($login_check->colour, $arc_key);
 						
@@ -520,7 +523,6 @@ class arcanum {
 
 	                                        //SET MASTERKEY
 	                                        $this->masterkey = $arc_key;
-
 
 						$sec_problem = FALSE;
 						##Added securtiy checks
@@ -611,7 +613,7 @@ class arcanum {
 
 			        	    if ($settings->find(TRUE)){
 			            		if ($this->arc_decrypt_output($settings->expand_memos) == "yes")
-							define('EXPAND_MEMOS', TRUE); //TODO: MEMO_FULL
+							define('EXPAND_MEMOS', TRUE);
                         			        
 						if ($this->arc_decrypt_output($settings->hide_desc) == 'yes')
 			                		define('HIDE_DESC', TRUE);
@@ -684,7 +686,7 @@ class arcanum {
 								if($new->find() === 0){						
 									$new->colour = $colour;
 									$new->lastupdated = $this->arc_encrypt(TIME, $this->arc_gen_master($this->request['password_1']));
-									
+									$new->cryptv = $this->arcanum_cryptv;
 									$id = $new->insert();
 									
 									logit("User " . $id . " successfully registered from ". UIP);	
@@ -871,7 +873,8 @@ class arcanum {
 
 				if (!($lifetime != "") || (!(@isset($lifetime))))
 					$lifetime = $this->default_session_lifetime;
-                                ############### 
+                                
+				############### 
 
 				$this->session_starter();
 				$this->set_secure_cookie($INITIAL = TRUE);
@@ -910,6 +913,11 @@ class arcanum {
                                 if (filter_var(UIP, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4))
                                         $this->session_set('lastip4', UIP);
 
+				if ($login_check->cryptv != '') {
+					$this->cryptv = $login_check->cryptv;
+				} else {
+					//$this->cryptv = 
+				}
 			}
 
 			return TRUE; //Lets go.
@@ -1573,7 +1581,12 @@ class arcanum {
                 return ($intv);
         }
 
-	protected function arc_encrypt ($arcanum, $password, $intvector = FALSE, $max_ciph = 0, $raw = TRUE)  {
+	protected function arc_encrypt ($arcanum, $password, $intvector = FALSE) {
+		$ret = $this->arc_encrypt_v1 ($arcanum, $password, $intvector);
+		return ($ret);
+	}
+
+	protected function arc_encrypt_v1 ($arcanum, $password, $intvector)  {
 		
 		$arcanum = (gzdeflate($arcanum, 9));
 		
@@ -1581,36 +1594,33 @@ class arcanum {
 		$intvector ? $intvector = $intvector : $intvector = $password;
 
                 foreach ($this->used_mcrypt_ciphers as $ciph => $mode) {
-	                
+	               
 			$arcanum = mcrypt_encrypt($ciph, $this->get_mcrypt_thing($password, mcrypt_get_key_size($ciph, $mode)), $arcanum, $mode, $this->get_mcrypt_thing($intvector, mcrypt_get_iv_size($ciph, $mode)));
 			if ($arcanum == FALSE)
 				throw new arcException(' User['.$this->id.']@['.$this->modulename.']' ."\n". 'USER ('.$this->id.') - mcrypt returned FALSE while encrypting', 408);
-			
-        	        $arcanum = ($base64) ? base64_encode($arcanum) : $arcanum;
 
                 }
-                        
                 $arcanum = (gzdeflate($arcanum, 9));
 	        return ($arcanum);
 	}
 
-	
+	protected function arc_decrypt ($arcanum, $password, $intvector = FALSE) {
+		$ret = $this->arc_decrypt_v1 ($arcanum, $password, $intvector);
+		return ($ret);
+	}
 
-	protected function arc_decrypt ($arcanum, $password, $intvector = FALSE, $max_ciph = 0, $raw = TRUE) {
+	protected function arc_decrypt_v1 ($arcanum, $password, $intvector) {
 			
 			if ($arcanum == '')
 				return $arcanum;
 		
 			$we_want_decrypt = $arcanum;
-		
 			$arcanum = gzinflate($arcanum);
 
 			//Should be set, except for login check
 			$intvector ? $intvector = $intvector : $intvector = $password;
-	
-			foreach (array_reverse($this->used_mcrypt_ciphers, TRUE) as $ciph => $mode) { //Fun. -> anti-clockwise
-				
-				$arcanum = ($base64) ? base64_decode($arcanum) : $arcanum;
+			
+			foreach (array_reverse($this->used_mcrypt_ciphers, TRUE) as $ciph => $mode) { //Fun. -> anti-clockwise	
 				$arcanum = mcrypt_decrypt($ciph, $this->get_mcrypt_thing($password, mcrypt_get_key_size($ciph, $mode)), $arcanum, $mode, $this->get_mcrypt_thing($intvector, mcrypt_get_iv_size($ciph, $mode)));
 			}
 
@@ -1633,8 +1643,6 @@ class arcanum {
 		}
 	        return ($arcanum);
 	}
-	
-
 	
 	############## ::MISC #################
 	
@@ -1696,8 +1704,9 @@ class arcanum {
 			}
 		
 			if ($this->file_integrity_check == TRUE) {	
-				if (defined('DEBUG_ON') && $this->session_get($this->session_integrity_checksum) == sha1_file(__FILE__)){
-					echo '<br><br><h3 class="info">file integrity check succeeded.</h3><br>'; 
+				if ($this->session_get($this->session_integrity_checksum) == sha1_file(__FILE__)){
+					if (defined('DEBUG_ON'))
+						echo '<br><br><h3 class="info">file integrity check succeeded.</h3><br>'; 
 				} else {
 					echo '<br><br><h3 class="error">file integrity check FAILED</h3><br>';
 					throw new arcException('file integrity check failed, change time is ' . strftime($this->dateopts_log, filectime(__FILE__)), 666); 

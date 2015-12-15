@@ -186,10 +186,6 @@ class export extends arcanum {
 
                 }	
 	
-		debug($all, $all);
-		die();			
-		
-				
 		$serialized = serialize($all);
 		unset($all);
 		$file = array();

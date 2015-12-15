@@ -76,7 +76,7 @@ $config = array(
                 'ip_sec_check' => TRUE, //rely on IP in sec check
                 'ipv6switchgraceactive' => TRUE, //allow switch to an other IP protocol - experimental.
                 'enablevirusscan' => TRUE, //check uploaded files for viruses before store in DB
-                'file_integrity_check' => TRUE, //check main file (lib/arcanum.php) for changes - for logged in people.
+                'file_integrity_check' => FALSE, //check main file (lib/arcanum.php) for changes - for logged in people.
 		'https' => (@$_SERVER['HTTPS'] == "on") ? TRUE : FALSE,
 
 		//could be changed
@@ -147,10 +147,14 @@ $config = array(
 	
 		//crypting values
 		//https://paragonie.com/white-paper/2015-secure-php-data-encryption
+		//https://www.warpconduit.net/2013/04/14/highly-secure-data-encryption-decryption-made-easy-with-php-mcrypt-rijndael-256-and-cbc/
 		//holy shit, do not change in production !!!!!!!!!!
+		'arcanum_cryptv' => 1,
+
 		'session_encrypt_env_vars' => array('TMPDIR','PHPRC','PATH','HTTP_ACCEPT_ENCODING', 'HTTP_ACCEPT', 'HTTP_ACCEPT_ENCODING', 'SERVER_SIGNATURE', 'HTTP_ACCEPT_LANGUAGE','SERVER_SOFTWARE','SERVER_NAME', 'HTTP_USER_AGENT', 'DOCUMENT_ROOT', 'GATEWAY_INTERFACE', 'SERVER_PROTOCOL', 'ORIG_SCRIPT_FILENAME', 'SERVER_ADMIN'),
 		'autologinprepend' => '<!--ARCAUTOLOGIN-->',
 		'crc' => md5($_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']),
+		'used_mcrypt_ciphers' => array(MCRYPT_RIJNDAEL_256 => MCRYPT_MODE_OFB, MCRYPT_TRIPLEDES => MCRYPT_MODE_CBC),
 		'used_mcrypt_ciphers' => array(MCRYPT_RIJNDAEL_192 => MCRYPT_MODE_OFB, MCRYPT_TRIPLEDES => MCRYPT_MODE_CBC),
 		'used_hash_aglos' => array('sha512', 'md5', 'whirlpool'),
 		//holy shit, do not change in production !!!!!!!!!!
@@ -253,8 +257,10 @@ $config['registered_start_modules'] = array(
 	'files',	
 	'memo',
 	'log',
-	'invitation'
 );
+if ($config['inv_mode'] == TRUE)
+	$config['registered_start_modules'][] = 'invitation';
+
 $config ['non_volatile'] = array(
 	'login' => array('tryit'),
 	'register' => array('doit'),

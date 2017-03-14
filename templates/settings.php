@@ -3,10 +3,10 @@ $css_s[] = $this->relpath . 'dl/css/farbtastic.css';
 $css_s[] = $this->relpath . 'dl/css/jquery_tools.css';
 $css_s[] = $this->relpath . 'dl/css/patternlock.css';
 
+$java_scripts[] = $this->relpath . 'dl/js/jquery.tools.min.126.js';
+$java_scripts[] = $this->relpath . 'dl/js/patternlock.js';
 $java_scripts[] = $this->relpath . 'dl/js/farbtastic.js';
 $java_scripts[] = $this->relpath . 'dl/js/jquery.pwdstr-1.0.source.js';
-$java_scripts[] = $this->relpath . 'dl/js/jquery.tools.min.js';
-$java_scripts[] = $this->relpath . 'dl/js/patternlock.js';
 
 $statuslink = $this->statuslink .'&sem='. $content['hashid'];
 
@@ -15,12 +15,10 @@ $java_script = "
 		$('#help_autologin').tooltip({ effect: 'slide'});	
 		$('#timeout_range').rangeinput();
 		$('#notify_pw_range').rangeinput();
+                $('.options_change').hide();
+                change_options('#settings');
+
 		$('#picker').farbtastic('#new_colour');
-		$('.options_change').hide();
-	
-		//$('#check_toggle').hide();
-		
-		change_options('#settings');
 	
 		$('#password1').keyup(function(){
 			if( $(this).val().length >= 1 ){
@@ -151,7 +149,7 @@ if ($this->forgot_active === TRUE){
 ?>
 
 <!-- SETTINGS CHANGE --> 
-
+<div class="clearer"></div>
 <div id="settings_change" class="options_change">
 	<div id="deleteaccount">
 		<a style="color: gray;" id="delete" class="choose" href="#" onclick="change_options('#delete');"><?=e('account_delete')?></a>
@@ -426,18 +424,3 @@ if ($content['lastupdated_to_old'] === TRUE){
 	$msg .= '<div class="error">'.e('change_pw_suggest').'</div>';
 }
 ?>
-
-<!-- Language things for Jquery PWDString Ext -->
-<input type="hidden" id="lesssecond" value="<?=e('lesssecond')?>" />
-<input type="hidden" id="onesecond" value="<?=e('onesecond')?>" />
-<input type="hidden" id="seconds" value="<?=e('seconds')?>" />
-<input type="hidden" id="onemminute" value="<?=e('onemminute')?>" />
-<input type="hidden" id="minutes" value="<?=e('minutes')?>" />
-<input type="hidden" id="onehour" value="<?=e('onehour')?>" />
-<input type="hidden" id="hours" value="<?=e('hours')?>" />
-<input type="hidden" id="oneday" value="<?=e('oneday')?>" />
-<input type="hidden" id="days" value="<?=e('days')?>" />
-<input type="hidden" id="onemonth" value="<?=e('onemonth')?>" />
-<input type="hidden" id="months" value="<?=e('months')?>" />
-<input type="hidden" id="oneyear" value="<?=e('oneyear')?>" />
-<input type="hidden" id="years" value="<?=e('years')?>" />

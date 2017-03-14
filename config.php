@@ -105,7 +105,7 @@ $config = array(
                 'csspath' => $this_dir.DS."dl".DS."css".DS,
 		'relpath' => $this_rel,
 		'host' => $_SERVER['HTTP_HOST'],
-		'jquery' => $this_rel.'dl/js/jquery-1.8.2.min.js',
+		'jquery' => $this_rel.'dl/js/jquery-3.1.1.min.js',
 	
 		//graphics
 		'maincss' => $this_rel.'dl/css/styles.css',

@@ -37,7 +37,7 @@ $config = array(
                         'password' => 'enter_your_database_password_here',
                         'charset'  => 'utf8', //do not change!
 			'hostspec' => 'localhost',
-                        //////'socket'   => '/var/run/mysqld/mysqld.sock', //I prefer sockets, you can commet this and use the following 'hostpec'
+                        ////////'socket'   => '/var/run/mysqld/mysqld.sock', //I prefer sockets, you can commet this and use the following 'hostpec'
 			//'ca' => $this_dir.DS.'sqlca.pem',
                 ),
 

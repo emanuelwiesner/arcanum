@@ -987,7 +987,10 @@ class arcanum {
 		}
 		
 		if (PHP_OS === 'Linux'){
-			$memfree = shell_exec("free -m | grep 'buffers/cache' | awk '{print $3}'");
+                        $memfree = shell_exec("free -m | grep 'Mem' | awk '{print $3}'");
+                        if (!(is_numeric($memfree)))
+                                $memfree = $this->min_mem + 1;
+
 			$load = sys_getloadavg();
 	
 			if ( ($memfree < $this->min_mem) || ($load[0] > $this->max_load) ){

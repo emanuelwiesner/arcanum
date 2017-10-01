@@ -19,7 +19,7 @@ class arc_Users extends DB_DataObject
     public $lastip;                         // text
     public $lastbrowser;                    // text
     public $lastupdated;                    // text
-    public $cryptv;                         // text
+    public $ciph_v;                         // text
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE

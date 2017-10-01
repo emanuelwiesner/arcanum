@@ -6,7 +6,7 @@
  * The PEAR DB driver for PHP's mssql extension
  * for interacting with Microsoft SQL Server databases
  *
- * PHP versions 4 and 5
+ * PHP version 5
  *
  * LICENSE: This source file is subject to version 3.0 of the PHP license
  * that is available through the world-wide-web at the following URI:
@@ -20,7 +20,7 @@
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id: mssql.php 306603 2010-12-24 06:05:07Z aharvey $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB
  */
 
@@ -49,7 +49,7 @@ require_once 'DB/common.php';
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    Release: 1.7.14
+ * @version    Release: 1.9.2
  * @link       http://pear.php.net/package/DB
  */
 class DB_mssql extends DB_common
@@ -179,13 +179,13 @@ class DB_mssql extends DB_common
     // {{{ constructor
 
     /**
-     * This constructor calls <kbd>$this->DB_common()</kbd>
+     * This constructor calls <kbd>parent::__construct()</kbd>
      *
      * @return void
      */
-    function DB_mssql()
+    function __construct()
     {
-        $this->DB_common();
+        parent::__construct();
     }
 
     // }}}

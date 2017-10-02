@@ -45,6 +45,38 @@ function search_memo (){
         return false;
 }
 
+function live_usersearch(obj) {
+  ul = 'ul_live_user';
+  if ($(obj).parent().children('.' + ul).html() != '') {
+    	$(obj).parent().children('.' + ul).hide();
+	$(obj).parent().children('.' + ul).html('');
+    
+  }
+  $(obj).parent().children('.' + ul).remove();
+  var q = $(obj).val();
+  if (q.length < <?=$config['min_search_chars']?>) {  
+    return false;
+  } else {
+    $.ajax({
+      url: "<?=link_for('search','username')?>",
+      data: 'q=' + encodeURIComponent(q),
+      type: 'POST',
+      success: function (data) {
+        var data = jQuery.parseJSON(data);
+        if (data != 0) {
+	$(obj).parent().append('<ul class="' + ul + '"></ul>');
+	$("#searchresult").html("<?=e('search_results')?>" + data.count);
+          for (var c = 0; c <= data.length - 1; c++) {
+            $(obj).parent().children('.' + ul).append('<li class="li_live_user" onclick="$(this.parentElement).hide();$(\'input[name=portal_login]\').val($(this).html());">' + data[c] + '</li>');
+          }
+		$(ul).show();
+        } 
+      }
+    });
+  }
+  return false;
+}
+
 function search_cat (){
 	
 	var q = $("#searchform input[name=q]").val();	
@@ -758,7 +790,7 @@ function load_arcanum (id,reload){
 			$('#timerinfo').html('&nbsp;');
 			$('#modulename').html('<?=e('logging_out')?>');
 			$('#content').animate({
-				height: '0px',
+				height: '47px',
 				paddingBottom: '0px'
 			}, 500);
 			

@@ -8,9 +8,8 @@ $(document).ready(function() {
 	$('#login #username').focus();
 	
     $('#noscript').hide();
-    var contentHeight = $('#content').height();
-	
-	$('#content').css('height', 47+'px');
+    var contentHeight = $('#content').css('height');
+	$('#content').css('height', '47px');
 
 	$('#button').click(function(){
 		var username = $('#login #username').val();  
@@ -21,8 +20,8 @@ $(document).ready(function() {
 			$('#login_stat').show();
 			
 			$('#content').animate({
-				height: contentHeight+'px',
-				paddingBottom: '105px'
+				height: contentHeight,
+				paddingBottom: '105px',
 			}, 500);
 			
 			window.loaded_patternlock = $('#patternlock').val();
@@ -46,5 +45,5 @@ $(document).ready(function() {
 	</div>
 	<div class="clearer"></div>
 </div>
-
 <input type="password" id="patternlock" name="patternlock" class="patternlock" />
+<div style="display: none;"><?=img($this->patt_active_ico).img($this->patt_active_ico2)?></div> <? //For better patternlock loading times ?>
